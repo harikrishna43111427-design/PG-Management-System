@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Owner Registration
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+<div class="card p-4 mx-auto"
+style="max-width:500px;">
+
+
+<h3 class="text-center mb-4">
+Owner Registration
+</h3>
+
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+
+<label>
+Owner Name
+</label>
+
+<input 
+type="text"
+name="name"
+class="form-control mb-3"
+required>
+
+
+
+<label>
+Username
+</label>
+
+<input 
+type="text"
+name="username"
+class="form-control mb-3"
+required>
+
+
+
+<label>
+Email
+</label>
+
+<input 
+type="email"
+name="email"
+class="form-control mb-3"
+required>
+
+
+
+<label>
+Phone
+</label>
+
+<input 
+type="text"
+name="phone"
+class="form-control mb-3"
+required>
+
+
+
+<label>
+Password
+</label>
+
+<input 
+type="password"
+name="password"
+class="form-control mb-3"
+required>
+
+
+
+<hr>
+
+
+<h5>
+PG Details
+</h5>
+
+
+
+<label>
+PG Name
+</label>
+
+<input 
+type="text"
+name="pg_name"
+class="form-control mb-3"
+required>
+
+
+
+<label>
+Branch
+</label>
+
+<input 
+type="text"
+name="branch"
+class="form-control mb-3"
+required>
+
+
+
+<label>
+Address
+</label>
+
+<textarea
+name="address"
+class="form-control mb-3"
+required></textarea>
+
+
+
+<label>
+Capacity
+</label>
+
+<input 
+type="number"
+name="capacity"
+class="form-control mb-3"
+required>
+
+
+
+<button 
+type="submit"
+class="btn btn-success w-100">
+
+Register
+
+</button>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+{% endblock %}

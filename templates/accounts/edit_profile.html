@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-4">
+
+
+<div class="card shadow p-4 mx-auto"
+style="max-width:600px;">
+
+
+<h3 class="text-center mb-4">
+Edit Profile
+</h3>
+
+
+
+<form method="POST"
+enctype="multipart/form-data">
+
+
+{% csrf_token %}
+
+
+
+<label>
+Profile Image
+</label>
+
+<input 
+type="file"
+name="profile_image"
+class="form-control mb-3">
+
+
+
+<label>
+Owner Name
+</label>
+
+<input 
+type="text"
+name="name"
+value="{{ user.first_name }}"
+class="form-control mb-3">
+
+
+
+<label>
+Email
+</label>
+
+<input 
+type="email"
+name="email"
+value="{{ user.email }}"
+class="form-control mb-3">
+
+
+
+<label>
+PG Name
+</label>
+
+<input 
+type="text"
+name="pg_name"
+value="{{ pg.pg_name }}"
+class="form-control mb-3">
+
+
+
+<label>
+Branch
+</label>
+
+<input 
+type="text"
+name="branch"
+value="{{ pg.branch }}"
+class="form-control mb-3">
+
+
+
+<label>
+Phone
+</label>
+
+<input 
+type="text"
+name="phone"
+value="{{ pg.phone }}"
+class="form-control mb-3">
+
+
+
+<label>
+Address
+</label>
+
+<textarea
+name="address"
+class="form-control mb-3">{{ pg.address }}</textarea>
+
+
+
+<label>
+Capacity
+</label>
+
+<input 
+type="number"
+name="capacity"
+value="{{ pg.capacity }}"
+class="form-control mb-3">
+
+
+
+<button 
+type="submit"
+class="btn btn-success w-100">
+
+Save Changes
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}

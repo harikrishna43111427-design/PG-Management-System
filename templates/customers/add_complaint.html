@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+Add Complaint
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<div class="container mt-4">
+
+
+<div class="card shadow p-4"
+style="max-width:500px;">
+
+
+
+<h3>
+Raise Complaint
+</h3>
+
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+
+<label>
+Complaint Title
+</label>
+
+
+<input type="text"
+name="title"
+class="form-control mb-3"
+placeholder="Example: Water problem"
+required>
+
+
+
+
+<label>
+Description
+</label>
+
+
+<textarea
+name="message"
+class="form-control mb-3"
+rows="5"
+placeholder="Explain your problem"
+required></textarea>
+
+
+
+
+<button class="btn btn-primary">
+
+Submit Complaint
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}

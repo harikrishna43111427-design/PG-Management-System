@@ -1,0 +1,653 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Owner Dashboard
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-4">
+
+
+<h2 class="mb-4">
+Welcome, {{ user.first_name }}
+</h2>
+
+
+
+
+
+<<div class="card shadow p-3 mb-4">
+
+
+<form method="GET" action="{% url 'expense_report' %}">
+
+
+<label>
+Select Month
+</label>
+
+
+<input
+type="month"
+name="month"
+class="form-control"
+style="max-width:250px;"
+value="{{ selected_month }}">
+
+
+
+<button
+class="btn btn-primary mt-2">
+
+View Report
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+<!-- PG DETAILS + CUSTOMER + ROOMS -->
+
+
+<div class="row">
+
+
+
+<!-- PG Details -->
+
+
+<div class="col-md-4 mb-3">
+
+
+<div class="card shadow p-3">
+
+
+<h5>
+PG Details
+</h5>
+
+
+<hr>
+
+
+<p>
+<b>PG Name:</b>
+{{ user.pgprofile.pg_name }}
+</p>
+
+
+<p>
+<b>PG ID:</b>
+{{ user.pgprofile.pg_id }}
+</p>
+
+
+<p>
+<b>Branch:</b>
+{{ user.pgprofile.branch }}
+</p>
+
+
+<p>
+<b>Phone:</b>
+{{ user.pgprofile.phone }}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Customers -->
+
+
+<div class="col-md-4 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<h5>
+Customers
+</h5>
+
+
+<h2>
+{{ customer_count }}
+</h2>
+
+
+
+<a href="{% url 'customer_list' %}"
+class="btn btn-primary">
+
+Manage
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Rooms -->
+
+
+<div class="col-md-4 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<h5>
+Rooms
+</h5>
+
+
+<h2>
+{{ room_count }}
+</h2>
+
+
+<a href="{% url 'room_list' %}"
+class="btn btn-success">
+
+Manage
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- FINANCE CARDS -->
+
+
+<div class="row mt-3">
+
+
+
+<div class="col-md-3 mb-3">
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-money-bill text-primary fa-2x"></i>
+
+
+<h5>
+Total Amount
+</h5>
+
+
+<h3>
+₹{{ total_amount }}
+</h3>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-hand-holding-dollar text-success fa-2x"></i>
+
+
+<h5>
+Received
+</h5>
+
+
+<h3>
+₹{{ received_amount }}
+</h3>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-clock text-danger fa-2x"></i>
+
+
+<h5>
+Pending
+</h5>
+
+
+<h3>
+₹{{ balance_amount }}
+</h3>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-wallet text-warning fa-2x"></i>
+
+
+<h5>
+Expense
+</h5>
+
+
+<h3>
+₹{{ total_expense }}
+</h3>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- PROFIT -->
+
+
+<div class="row">
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-chart-line text-success fa-2x"></i>
+
+
+<h5>
+Profit
+</h5>
+
+
+<h3>
+₹{{ profit }}
+</h3>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- MANAGEMENT MENU -->
+
+
+<div class="row mt-4">
+
+
+
+
+
+<!-- Rent -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-money-bill text-primary fa-2x"></i>
+
+
+<h5>
+Rent
+</h5>
+
+
+<a href="{% url 'rent_list' %}"
+class="btn btn-outline-primary">
+
+View
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Electricity -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-bolt text-warning fa-2x"></i>
+
+
+<h5>
+Electricity
+</h5>
+
+
+<a href="{% url 'electricity_list' %}"
+class="btn btn-outline-warning">
+
+View
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Payments -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-credit-card text-success fa-2x"></i>
+
+
+<h5>
+Payments
+</h5>
+
+
+<a href="{% url 'payment_list' %}"
+class="btn btn-outline-success">
+
+View
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Expenses -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-wallet text-danger fa-2x"></i>
+
+
+<h5>
+Expenses
+</h5>
+
+
+<a href="{% url 'expense_list' %}"
+class="btn btn-outline-danger">
+
+View
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="row mt-3">
+
+
+
+
+
+
+<!-- Food Menu -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-utensils text-success fa-2x"></i>
+
+
+<h5>
+Food Menu
+</h5>
+
+
+<a href="{% url 'food_menu_list' %}"
+class="btn btn-outline-success">
+
+Manage
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Complaints -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-comment-dots text-primary fa-2x"></i>
+
+
+<h5>
+Complaints
+</h5>
+
+
+<a href="{% url 'complaint_list' %}"
+class="btn btn-outline-primary">
+
+View
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Notices -->
+
+
+<div class="col-md-3 mb-3">
+
+
+<div class="card shadow p-3 text-center">
+
+
+<i class="fa-solid fa-bell text-danger fa-2x"></i>
+
+
+<h5>
+Notices
+</h5>
+
+
+<a href="{% url 'notice_list' %}"
+class="btn btn-outline-danger">
+
+View
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,313 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Electricity Details
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container mt-4">
+
+
+
+<h3 class="mb-4">
+Electricity Details
+</h3>
+
+
+
+
+<!-- Customer Details -->
+
+<div class="card shadow p-4 mb-4">
+
+
+<h5>
+Customer Information
+</h5>
+
+
+<hr>
+
+
+<div class="row">
+
+
+<div class="col-md-6">
+
+
+<p>
+<strong>Name:</strong>
+
+{{ customer.user.first_name }}
+
+</p>
+
+
+
+
+<p>
+<strong>Room:</strong>
+
+{% if customer.room %}
+
+Room {{ customer.room.room_number }}
+
+{% else %}
+
+Not Assigned
+
+{% endif %}
+
+</p>
+
+
+
+
+<p>
+<strong>Room Type:</strong>
+
+{% if customer.room %}
+
+{{ customer.room.room_type }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-6">
+
+
+<p>
+<strong>Food:</strong>
+
+{{ customer.food }}
+
+</p>
+
+
+
+{% if room %}
+
+<p>
+<strong>Total Beds:</strong>
+
+{{ room.total_beds }}
+
+</p>
+
+
+
+<p>
+<strong>Occupied Beds:</strong>
+
+{{ occupied_beds }}
+
+</p>
+
+
+
+<p>
+<strong>Available Beds:</strong>
+
+{{ room.total_beds|add:"-"|add:occupied_beds }}
+
+</p>
+
+{% endif %}
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- Electricity History -->
+
+
+<div class="card shadow">
+
+
+<div class="card-body">
+
+
+<h5>
+Electricity History
+</h5>
+
+
+<hr>
+
+
+
+<table class="table table-bordered table-hover">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>
+Month
+</th>
+
+
+<th>
+Room
+</th>
+
+
+<th>
+Units Used
+</th>
+
+
+<th>
+Total Room Amount
+</th>
+
+
+<th>
+Your Amount
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+{% for item in electricity %}
+
+
+<tr>
+
+
+<td>
+{{ item.month }}
+</td>
+
+
+
+<td>
+
+Room {{ item.room.room_number }}
+
+</td>
+
+
+
+<td>
+{{ item.units_used }}
+</td>
+
+
+
+<td>
+₹{{ item.total_amount }}
+</td>
+
+
+
+<td>
+₹{{ item.per_person_amount }}
+</td>
+
+
+
+</tr>
+
+
+{% empty %}
+
+
+<tr>
+
+<td colspan="5"
+class="text-center">
+
+No Electricity Records Found
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- Total Amount -->
+
+
+<div class="card shadow mt-4 p-3 text-center">
+
+
+<h5>
+Total Electricity Amount
+</h5>
+
+
+<h3 class="text-success">
+
+₹{{ total_electricity }}
+
+</h3>
+
+
+</div>
+
+
+
+</div>
+
+
+
+{% endblock %}
